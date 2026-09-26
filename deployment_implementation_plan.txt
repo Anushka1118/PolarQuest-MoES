@@ -1,0 +1,126 @@
+================================================================================
+POLARQUEST — SIMPLE STEP-BY-STEP DEPLOYMENT PLAN
+MoES SIH26063 Online Deployment Roadmap (Supabase + Vercel + Gemini AI)
+================================================================================
+
+1. OVERVIEW
+--------------------------------------------------------------------------------
+This guide gives you a simple, lean, 6-step checklist to deploy PolarQuest online.
+Total estimated time: 60 - 90 minutes.
+
+
+2. STEP 1: LOCAL PRE-DEPLOYMENT CHECK (10 MINS)
+--------------------------------------------------------------------------------
+Before uploading your project to GitHub or Vercel, verify that Next.js can build 
+your code locally without any errors.
+
+Command:
+  npm run build
+
+Expected result:
+  ✓ Compiled successfully
+  ✓ Type checking passed
+  ✓ Generating static pages completed
+
+
+3. STEP 2: SUPABASE DATABASE & AUTH SETUP (20 MINS)
+--------------------------------------------------------------------------------
+1. Create Project:
+   - Go to https://supabase.com -> Log in -> Click "New Project".
+   - Name: `PolarQuest-MoES`
+   - Set a Database Password and choose Region: `South Asia (Mumbai)` or `Singapore`.
+
+2. Run Database Script:
+   - In Supabase Dashboard, click "SQL Editor" -> "New Query".
+   - Open `supabase/schema.sql` from your project folder.
+   - Copy and paste the entire script into the SQL Editor and click "Run".
+   - (This creates your tables, pre-seeds station coordinates, creates the storage 
+      bucket `research-pdfs`, and sets up profile triggers).
+
+3. Create Demo Accounts:
+   - In Supabase Dashboard, go to "Authentication" -> "Users" -> "Add User" -> "Create User".
+   - Account 1 (Researcher):
+     Email: `researcher@demo.com`
+     Password: `polarquest2026`
+     Auto Confirm User: Checked [✓]
+   - Account 2 (Admin):
+     Email: `admin@demo.com`
+     Password: `polarquest2026`
+     Auto Confirm User: Checked [✓]
+
+4. Set User Roles:
+   - Open the "SQL Editor" in Supabase and run this query:
+     ```sql
+     UPDATE public.profiles 
+     SET role = 'researcher' 
+     WHERE id IN (SELECT id FROM auth.users WHERE email = 'researcher@demo.com');
+
+     UPDATE public.profiles 
+     SET role = 'admin' 
+     WHERE id IN (SELECT id FROM auth.users WHERE email = 'admin@demo.com');
+     ```
+
+5. Copy Your API Keys:
+   - Go to "Project Settings" -> "API". Copy these 3 values:
+     • Project URL (`NEXT_PUBLIC_SUPABASE_URL`)
+     • anon key (`NEXT_PUBLIC_SUPABASE_ANON_KEY`)
+     • service_role key (`SUPABASE_SERVICE_ROLE_KEY`)
+
+
+4. STEP 3: GET GOOGLE GEMINI API KEY (5 MINS)
+--------------------------------------------------------------------------------
+1. Go to Google AI Studio at https://aistudio.google.com/.
+2. Click "Get API Key" -> "Create API Key".
+3. Copy the key (`GEMINI_API_KEY`).
+
+
+5. STEP 4: PUSH CODE TO GITHUB (10 MINS)
+--------------------------------------------------------------------------------
+Make sure `.env.local` is listed in your `.gitignore` file so secret keys are not committed.
+
+In your terminal, run:
+  git init
+  git add .
+  git commit -m "PolarQuest Production Deployment Build"
+  git branch -M main
+  git remote add origin https://github.com/YOUR_GITHUB_USERNAME/polarquest.git
+  git push -u origin main
+
+
+6. STEP 5: DEPLOY ON VERCEL (15 MINS)
+--------------------------------------------------------------------------------
+1. Import Repository:
+   - Log in at https://vercel.com.
+   - Click "Add New..." -> "Project".
+   - Select your `polarquest` GitHub repository.
+
+2. Add Environment Variables:
+   In the Vercel project configuration screen, open "Environment Variables" 
+   and add these 4 keys:
+
+   KEY                           VALUE
+   ----------------------------- --------------------------------------------
+   NEXT_PUBLIC_SUPABASE_URL      https://your-project.supabase.co
+   NEXT_PUBLIC_SUPABASE_ANON_KEY eyJhbGci... (your anon key)
+   SUPABASE_SERVICE_ROLE_KEY     eyJhbGci... (your service role key)
+   GEMINI_API_KEY                AIzaSy... (your Gemini key)
+
+3. Deploy:
+   - Click "Deploy".
+   - Vercel will build the Next.js app and issue your live website URL 
+     (e.g., `https://polarquest.vercel.app`).
+
+
+7. STEP 6: SUPABASE AUTH URL CONFIG & FINAL DEMO TEST (15 MINS)
+--------------------------------------------------------------------------------
+1. Configure Supabase Redirect URL:
+   - In Supabase Dashboard -> "Authentication" -> "URL Configuration".
+   - Set "Site URL" to your live Vercel URL (e.g., `https://polarquest.vercel.app`).
+
+2. Live Smoke Test:
+   Open your live Vercel URL and test the main workflow:
+   - 3D Globe: Confirm Earth loads and Bharati weather telemetry displays.
+   - Researcher: Log in as `researcher@demo.com` -> Upload PDF / sample -> Run Gemini extraction -> Submit for review.
+   - Admin: Log in as `admin@demo.com` -> Click Approve & Publish -> Generate AI Media posts.
+   - Public Vault: Check `/research` page to see the newly published paper.
+================================================================================
