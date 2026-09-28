@@ -1,0 +1,5 @@
+supabase database password:   Anushka1118 
+anon key:   eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR1Y2RveXN5YXV6amF6dGp1a2hiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA0NDQxNTAsImV4cCI6MjEwNjAyMDE1MH0.DkiJ9-7-Iu5Oo0LeL9s3TtnwwN-X-coYlYpUB8eCB_E
+service role key:    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR1Y2RveXN5YXV6amF6dGp1a2hiIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc5MDQ0NDE1MCwiZXhwIjoyMTA2MDIwMTUwfQ.kc4SLyNSRHwPegpKLW4cYD_ggs9v6_ZzPMB9ZJ79kko
+project url:    https://tucdoysyauzjaztjukhb.supabase.co
+gemini key:     AQ.Ab8RN6IKgD90-Vs_l0V55H_lIGiV0VX2Ni7F82gyxtM5EmTaVg

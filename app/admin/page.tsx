@@ -92,54 +92,54 @@ export default function AdminConsolePage() {
 
   return (
     <AuthGuard allowedRoles={['admin']}>
-      <div className="min-h-screen bg-navy-950 py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8">
+      <div className="min-h-screen bg-slate-50 dark:bg-navy-950 py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8 transition-colors duration-300">
         {/* Header */}
-        <div className="border-b border-polar-500/20 pb-6">
-          <div className="flex items-center space-x-2 text-xs font-mono text-purple-300 font-bold uppercase tracking-wider mb-1">
+        <div className="border-b border-slate-200 dark:border-polar-500/20 pb-6">
+          <div className="flex items-center space-x-2 text-xs font-mono text-purple-700 dark:text-purple-300 font-bold uppercase tracking-wider mb-1">
             <ShieldCheck className="w-4 h-4" />
             <span>Administrator Control Console</span>
           </div>
-          <h1 className="text-3xl font-black text-white">
+          <h1 className="text-3xl font-black text-slate-900 dark:text-white">
             MoES Scientific Review & Publishing Workflow
           </h1>
         </div>
 
         {/* Notification Banner */}
         {notification && (
-          <div className="p-4 rounded-xl bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 text-sm font-semibold flex items-center space-x-2 animate-in fade-in duration-300">
-            <CheckCircle2 className="w-5 h-5 shrink-0" />
+          <div className="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-500/50 text-emerald-800 dark:text-emerald-300 text-sm font-semibold flex items-center space-x-2 animate-in fade-in duration-300 shadow-sm">
+            <CheckCircle2 className="w-5 h-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
             <span>{notification}</span>
           </div>
         )}
 
         {/* Stats Ribbon */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-navy-900/80 border border-amber-500/40 p-5 rounded-2xl flex items-center justify-between">
+          <div className="bg-white/90 dark:bg-navy-900/80 border border-amber-300 dark:border-amber-500/40 p-5 rounded-2xl flex items-center justify-between shadow-md shadow-slate-200/50 dark:shadow-none">
             <div>
-              <div className="text-3xl font-black text-amber-300 font-mono">{pendingList.length}</div>
-              <div className="text-xs text-polar-300 font-semibold uppercase mt-0.5">Pending Review</div>
+              <div className="text-3xl font-black text-amber-600 dark:text-amber-300 font-mono">{pendingList.length}</div>
+              <div className="text-xs text-slate-600 dark:text-polar-300 font-semibold uppercase mt-0.5">Pending Review</div>
             </div>
-            <div className="p-3 rounded-xl bg-amber-950/60 border border-amber-500/30 text-amber-300">
+            <div className="p-3 rounded-xl bg-amber-50 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-500/30 text-amber-600 dark:text-amber-300">
               <Clock className="w-6 h-6 animate-spin" />
             </div>
           </div>
 
-          <div className="bg-navy-900/80 border border-emerald-500/40 p-5 rounded-2xl flex items-center justify-between">
+          <div className="bg-white/90 dark:bg-navy-900/80 border border-emerald-300 dark:border-emerald-500/40 p-5 rounded-2xl flex items-center justify-between shadow-md shadow-slate-200/50 dark:shadow-none">
             <div>
-              <div className="text-3xl font-black text-emerald-300 font-mono">{publishedList.length}</div>
-              <div className="text-xs text-polar-300 font-semibold uppercase mt-0.5 font-mono">Published Records</div>
+              <div className="text-3xl font-black text-emerald-600 dark:text-emerald-300 font-mono">{publishedList.length}</div>
+              <div className="text-xs text-slate-600 dark:text-polar-300 font-semibold uppercase mt-0.5 font-mono">Published Records</div>
             </div>
-            <div className="p-3 rounded-xl bg-emerald-950/60 border border-emerald-500/30 text-emerald-300">
+            <div className="p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-500/30 text-emerald-600 dark:text-emerald-300">
               <CheckCircle2 className="w-6 h-6" />
             </div>
           </div>
 
-          <div className="bg-navy-900/80 border border-red-500/40 p-5 rounded-2xl flex items-center justify-between">
+          <div className="bg-white/90 dark:bg-navy-900/80 border border-red-300 dark:border-red-500/40 p-5 rounded-2xl flex items-center justify-between shadow-md shadow-slate-200/50 dark:shadow-none">
             <div>
-              <div className="text-3xl font-black text-red-400 font-mono">{rejectedList.length}</div>
-              <div className="text-xs text-polar-300 font-semibold uppercase mt-0.5 font-mono">Rejected Records</div>
+              <div className="text-3xl font-black text-red-600 dark:text-red-400 font-mono">{rejectedList.length}</div>
+              <div className="text-xs text-slate-600 dark:text-polar-300 font-semibold uppercase mt-0.5 font-mono">Rejected Records</div>
             </div>
-            <div className="p-3 rounded-xl bg-red-950/60 border border-red-500/30 text-red-400">
+            <div className="p-3 rounded-xl bg-red-50 dark:bg-red-950/60 border border-red-200 dark:border-red-500/30 text-red-600 dark:text-red-400">
               <XCircle className="w-6 h-6" />
             </div>
           </div>
@@ -147,8 +147,8 @@ export default function AdminConsolePage() {
 
         {/* Pending Review Queue */}
         <div className="space-y-4">
-          <h2 className="text-xl font-bold text-white flex items-center gap-2">
-            <Clock className="w-5 h-5 text-amber-400" />
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <Clock className="w-5 h-5 text-amber-500 dark:text-amber-400" />
             <span>Pending Scientific Submissions</span>
           </h2>
 
@@ -157,28 +157,28 @@ export default function AdminConsolePage() {
               {pendingList.map((item) => (
                 <div
                   key={item.id}
-                  className="bg-navy-900/90 border border-amber-500/30 hover:border-amber-400 rounded-2xl p-6 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6 transition-all"
+                  className="bg-white/90 dark:bg-navy-900/90 border border-amber-300 dark:border-amber-500/30 hover:border-amber-500 dark:hover:border-amber-400 rounded-2xl p-6 shadow-xl shadow-slate-200/50 dark:shadow-navy-950/50 flex flex-col md:flex-row md:items-center justify-between gap-6 transition-all"
                 >
                   <div className="space-y-1">
                     <div className="flex items-center space-x-2 text-xs font-mono">
-                      <span className="px-2.5 py-0.5 rounded bg-polar-900 border border-polar-500/30 text-aurora-cyan font-bold">
+                      <span className="px-2.5 py-0.5 rounded bg-sky-100 dark:bg-polar-900 border border-sky-300 dark:border-polar-500/30 text-sky-900 dark:text-aurora-cyan font-bold">
                         {item.station_name} Station
                       </span>
-                      <span className="text-polar-300">• {item.discipline}</span>
-                      <span className="text-polar-400">• Expedition {item.expedition_year}</span>
+                      <span className="text-slate-600 dark:text-polar-300">• {item.discipline}</span>
+                      <span className="text-slate-500 dark:text-polar-400">• Expedition {item.expedition_year}</span>
                     </div>
 
-                    <h3 className="text-lg font-bold text-white">{item.title}</h3>
-                    <p className="text-xs text-polar-300 line-clamp-2">{item.abstract}</p>
-                    <div className="text-xs text-polar-400">Submitted by: {item.author}</div>
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white">{item.title}</h3>
+                    <p className="text-xs text-slate-600 dark:text-polar-300 line-clamp-2">{item.abstract}</p>
+                    <div className="text-xs text-slate-500 dark:text-polar-400">Submitted by: {item.author}</div>
                   </div>
 
                   <div className="flex items-center space-x-3 shrink-0">
                     <button
                       onClick={() => setSelectedRecord(item)}
-                      className="px-4 py-2 rounded-xl bg-polar-900 border border-polar-500/30 text-polar-200 hover:text-white text-xs font-bold transition-all flex items-center space-x-1.5"
+                      className="px-4 py-2 rounded-xl bg-slate-100 dark:bg-polar-900 border border-slate-300 dark:border-polar-500/30 text-slate-700 dark:text-polar-200 hover:text-slate-900 dark:hover:text-white text-xs font-bold transition-all flex items-center space-x-1.5"
                     >
-                      <Eye className="w-4 h-4 text-aurora-cyan" />
+                      <Eye className="w-4 h-4 text-sky-600 dark:text-aurora-cyan" />
                       <span>Review Details</span>
                     </button>
 
@@ -192,7 +192,7 @@ export default function AdminConsolePage() {
 
                     <button
                       onClick={() => handleRejectRecord(item.id)}
-                      className="px-4 py-2 rounded-xl bg-red-950/80 border border-red-500/40 text-red-300 hover:bg-red-900 text-xs font-bold transition-all flex items-center space-x-1.5"
+                      className="px-4 py-2 rounded-xl bg-red-50 dark:bg-red-950/80 border border-red-200 dark:border-red-500/40 text-red-700 dark:text-red-300 hover:bg-red-100 dark:hover:bg-red-900 text-xs font-bold transition-all flex items-center space-x-1.5"
                     >
                       <XCircle className="w-4 h-4" />
                       <span>Reject</span>
@@ -202,9 +202,9 @@ export default function AdminConsolePage() {
               ))}
             </div>
           ) : (
-            <div className="py-12 text-center text-polar-400 space-y-2 bg-navy-900/60 rounded-2xl border border-polar-500/20">
-              <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto" />
-              <div className="text-base font-bold text-white">Review Queue Clear</div>
+            <div className="py-12 text-center text-slate-500 dark:text-polar-400 space-y-2 bg-white/80 dark:bg-navy-900/60 rounded-2xl border border-slate-200 dark:border-polar-500/20 shadow-sm">
+              <CheckCircle2 className="w-10 h-10 text-emerald-500 dark:text-emerald-400 mx-auto" />
+              <div className="text-base font-bold text-slate-900 dark:text-white">Review Queue Clear</div>
               <div className="text-xs">All submitted expedition research papers have been reviewed.</div>
             </div>
           )}
@@ -212,39 +212,39 @@ export default function AdminConsolePage() {
 
         {/* Modal for Detailed Review */}
         {selectedRecord && (
-          <div className="fixed inset-0 z-50 bg-navy-950/80 backdrop-blur-md flex items-center justify-center p-4">
-            <div className="bg-navy-900 border border-polar-500/40 rounded-2xl p-6 max-w-2xl w-full space-y-4 shadow-2xl">
-              <div className="flex items-center justify-between border-b border-polar-500/20 pb-3">
-                <span className="text-xs font-mono font-bold text-aurora-cyan uppercase">
+          <div className="fixed inset-0 z-50 bg-slate-900/50 dark:bg-navy-950/80 backdrop-blur-md flex items-center justify-center p-4">
+            <div className="bg-white dark:bg-navy-900 border border-slate-200 dark:border-polar-500/40 rounded-2xl p-6 max-w-2xl w-full space-y-4 shadow-2xl">
+              <div className="flex items-center justify-between border-b border-slate-200 dark:border-polar-500/20 pb-3">
+                <span className="text-xs font-mono font-bold text-sky-700 dark:text-aurora-cyan uppercase">
                   Admin Verification Inspector
                 </span>
                 <button
                   onClick={() => setSelectedRecord(null)}
-                  className="text-polar-400 hover:text-white"
+                  className="text-slate-400 dark:text-polar-400 hover:text-slate-900 dark:hover:text-white"
                 >
                   ✕
                 </button>
               </div>
 
-              <h2 className="text-xl font-bold text-white">{selectedRecord.title}</h2>
-              <div className="text-xs text-polar-300">
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white">{selectedRecord.title}</h2>
+              <div className="text-xs text-slate-600 dark:text-polar-300">
                 Author: {selectedRecord.author} | Station: {selectedRecord.station_name} | Lat: {selectedRecord.latitude}°, Long: {selectedRecord.longitude}°
               </div>
 
-              <div className="bg-navy-950 p-4 rounded-xl border border-polar-500/20 text-xs text-polar-200 leading-relaxed">
+              <div className="bg-slate-50 dark:bg-navy-950 p-4 rounded-xl border border-slate-200 dark:border-polar-500/20 text-xs text-slate-700 dark:text-polar-200 leading-relaxed">
                 {selectedRecord.abstract}
               </div>
 
-              <div className="flex items-center justify-end space-x-3 pt-4 border-t border-polar-500/20">
+              <div className="flex items-center justify-end space-x-3 pt-4 border-t border-slate-200 dark:border-polar-500/20">
                 <button
                   onClick={() => handleRejectRecord(selectedRecord.id)}
-                  className="px-4 py-2 rounded-xl bg-red-950 border border-red-500/40 text-red-300 text-xs font-bold"
+                  className="px-4 py-2 rounded-xl bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-500/40 text-red-700 dark:text-red-300 text-xs font-bold hover:bg-red-100 transition-colors"
                 >
                   Reject Paper
                 </button>
                 <button
                   onClick={() => handleApproveAndPublish(selectedRecord.id)}
-                  className="px-5 py-2 rounded-xl bg-emerald-600 text-white font-bold text-xs shadow-lg"
+                  className="px-5 py-2 rounded-xl bg-emerald-600 text-white font-bold text-xs shadow-lg hover:bg-emerald-500 transition-colors"
                 >
                   Approve & Publish Record
                 </button>

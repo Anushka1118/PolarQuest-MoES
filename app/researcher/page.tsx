@@ -91,27 +91,27 @@ export default function ResearcherConsolePage() {
 
   return (
     <AuthGuard allowedRoles={['researcher', 'admin']}>
-      <div className="min-h-screen bg-navy-950 py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8">
+      <div className="min-h-screen bg-gradient-to-br from-[#e0f2fe] via-[#dbeafe] to-[#cff4fc] dark:from-navy-950 dark:via-navy-900 dark:to-navy-950 py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8 transition-colors duration-300">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-polar-500/20 pb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-sky-300 dark:border-polar-500/20 pb-6">
           <div>
-            <div className="flex items-center space-x-2 text-xs font-mono text-aurora-cyan font-bold uppercase tracking-wider mb-1">
+            <div className="flex items-center space-x-2 text-xs font-mono text-sky-800 dark:text-aurora-cyan font-bold uppercase tracking-wider mb-1">
               <FileText className="w-4 h-4" />
               <span>Researcher Console</span>
             </div>
-            <h1 className="text-3xl font-black text-white">
+            <h1 className="text-3xl font-black text-[#031a2e] dark:text-white">
               AI Expedition Report Ingestion Engine
             </h1>
           </div>
 
           {/* Navigation Tabs */}
-          <div className="flex items-center bg-navy-900 p-1 rounded-xl border border-polar-500/30">
+          <div className="flex items-center bg-sky-100 dark:bg-navy-900 p-1 rounded-xl border border-sky-300 dark:border-polar-500/30">
             <button
               onClick={() => setActiveTab('ingestion')}
               className={`px-4 py-2 rounded-lg text-xs font-bold transition-all flex items-center space-x-1.5 ${
                 activeTab === 'ingestion'
-                  ? 'bg-aurora-cyan text-navy-950 shadow-glow-cyan'
-                  : 'text-polar-300 hover:text-white'
+                  ? 'bg-sky-600 dark:bg-aurora-cyan text-white dark:text-navy-950 shadow-md dark:shadow-glow-cyan'
+                  : 'text-sky-900 dark:text-polar-300 hover:text-sky-950 dark:hover:text-white'
               }`}
             >
               <Plus className="w-4 h-4" />
@@ -121,8 +121,8 @@ export default function ResearcherConsolePage() {
               onClick={() => setActiveTab('submissions')}
               className={`px-4 py-2 rounded-lg text-xs font-bold transition-all flex items-center space-x-1.5 ${
                 activeTab === 'submissions'
-                  ? 'bg-aurora-cyan text-navy-950 shadow-glow-cyan'
-                  : 'text-polar-300 hover:text-white'
+                  ? 'bg-sky-600 dark:bg-aurora-cyan text-white dark:text-navy-950 shadow-md dark:shadow-glow-cyan'
+                  : 'text-sky-900 dark:text-polar-300 hover:text-sky-950 dark:hover:text-white'
               }`}
             >
               <BookOpen className="w-4 h-4" />
@@ -133,8 +133,8 @@ export default function ResearcherConsolePage() {
 
         {/* Banner Notification */}
         {notification && (
-          <div className="p-4 rounded-xl bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 text-sm font-semibold flex items-center space-x-2 animate-in fade-in duration-300">
-            <CheckCircle2 className="w-5 h-5 shrink-0" />
+          <div className="p-4 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-500/50 text-emerald-900 dark:text-emerald-300 text-sm font-semibold flex items-center space-x-2 animate-in fade-in duration-300">
+            <CheckCircle2 className="w-5 h-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
             <span>{notification}</span>
           </div>
         )}
@@ -157,33 +157,33 @@ export default function ResearcherConsolePage() {
         {/* Tab 2: My Submissions */}
         {activeTab === 'submissions' && (
           <div className="space-y-4">
-            <h2 className="text-xl font-bold text-white mb-4">Track Ingestion Submissions</h2>
+            <h2 className="text-xl font-bold text-[#031a2e] dark:text-white mb-4">Track Ingestion Submissions</h2>
             {submissions.length > 0 ? (
               <div className="grid grid-cols-1 gap-4">
                 {submissions.map((item) => (
                   <div
                     key={item.id}
-                    className="bg-navy-900/80 border border-polar-500/30 rounded-xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+                    className="bg-white/90 dark:bg-navy-900/80 border border-sky-300 dark:border-polar-500/30 rounded-xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-md dark:shadow-none"
                   >
                     <div>
                       <div className="flex items-center space-x-2 text-xs font-mono mb-1">
-                        <span className="text-aurora-cyan font-bold">{item.station_name} Station</span>
-                        <span className="text-polar-400">• {item.discipline}</span>
+                        <span className="text-sky-700 dark:text-aurora-cyan font-bold">{item.station_name} Station</span>
+                        <span className="text-sky-800 dark:text-polar-400">• {item.discipline}</span>
                       </div>
-                      <h3 className="text-base font-bold text-white">{item.title}</h3>
-                      <p className="text-xs text-polar-300 line-clamp-1 mt-1">{item.abstract}</p>
+                      <h3 className="text-base font-bold text-[#031a2e] dark:text-white">{item.title}</h3>
+                      <p className="text-xs text-slate-700 dark:text-polar-300 line-clamp-1 mt-1">{item.abstract}</p>
                     </div>
 
                     <div className="flex items-center space-x-3 shrink-0">
                       <span
                         className={`px-3 py-1 rounded-full text-xs font-bold font-mono uppercase flex items-center gap-1 ${
                           item.status === 'published'
-                            ? 'bg-emerald-950 text-emerald-400 border border-emerald-500/30'
+                            ? 'bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-500/30'
                             : item.status === 'pending_review'
-                            ? 'bg-amber-950 text-amber-300 border border-amber-500/30'
+                            ? 'bg-amber-100 dark:bg-amber-950 text-amber-900 dark:text-amber-300 border border-amber-300 dark:border-amber-500/30'
                             : item.status === 'rejected'
-                            ? 'bg-red-950 text-red-400 border border-red-500/30'
-                            : 'bg-polar-900 text-polar-300 border border-polar-500/30'
+                            ? 'bg-red-100 dark:bg-red-950 text-red-800 dark:text-red-400 border border-red-300 dark:border-red-500/30'
+                            : 'bg-sky-100 dark:bg-polar-900 text-sky-800 dark:text-polar-300 border border-sky-300 dark:border-polar-500/30'
                         }`}
                       >
                         {item.status === 'pending_review' ? (
@@ -200,9 +200,9 @@ export default function ResearcherConsolePage() {
                 ))}
               </div>
             ) : (
-              <div className="py-12 text-center text-polar-400 space-y-2 bg-navy-900/60 rounded-2xl border border-polar-500/20">
-                <FileText className="w-10 h-10 text-polar-500 mx-auto" />
-                <div className="text-base font-bold text-white">No submissions yet</div>
+              <div className="py-12 text-center text-sky-700 dark:text-polar-400 space-y-2 bg-white/80 dark:bg-navy-900/60 rounded-2xl border border-sky-300 dark:border-polar-500/20">
+                <FileText className="w-10 h-10 text-sky-500 dark:text-polar-500 mx-auto" />
+                <div className="text-base font-bold text-[#031a2e] dark:text-white">No submissions yet</div>
                 <div className="text-xs">Upload a PDF paper above to submit your first record.</div>
               </div>
             )}

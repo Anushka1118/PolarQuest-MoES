@@ -3,11 +3,13 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Globe, Compass, BookOpen, GraduationCap, FileText, ShieldCheck, UserCheck, LogOut, Sparkles, Snowflake } from 'lucide-react';
+import { Globe, Compass, BookOpen, GraduationCap, FileText, ShieldCheck, UserCheck, LogOut, Sparkles, Snowflake, Sun, Moon } from 'lucide-react';
 import { UserRole } from '@/lib/supabase';
+import { useTheme } from '@/context/ThemeContext';
 
 export default function Navbar() {
   const pathname = usePathname();
+  const { theme, toggleTheme } = useTheme();
   const [activeRole, setActiveRole] = useState<UserRole>('public');
   const [userEmail, setUserEmail] = useState<string | null>(null);
 
@@ -43,43 +45,43 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-navy-950/80 backdrop-blur-xl border-b border-polar-500/20 shadow-lg shadow-navy-950/50">
+    <header className="sticky top-0 z-50 bg-surface/90 backdrop-blur-xl border-b border-stroke shadow-md transition-colors duration-250">
       {/* Hackathon Fast-Role Switcher Ribbon */}
-      <div className="bg-gradient-to-r from-polar-900 via-navy-900 to-polar-950 border-b border-polar-500/10 px-4 py-1 flex items-center justify-between text-xs text-polar-300">
+      <div className="bg-bg-secondary border-b border-stroke px-4 py-1 flex items-center justify-between text-xs text-content-muted">
         <div className="flex items-center space-x-2">
-          <Snowflake className="w-3.5 h-3.5 text-polar-400 animate-spin" style={{ animationDuration: '12s' }} />
-          <span className="font-semibold text-white tracking-wide">MoES SIH26063 Prototype</span>
-          <span className="hidden md:inline-block text-polar-400">| Live Telemetry & AI Paper Ingestion Engine</span>
+          <Snowflake className="w-3.5 h-3.5 text-brand-primary animate-spin" style={{ animationDuration: '12s' }} />
+          <span className="font-semibold text-content-main tracking-wide">MoES SIH26063 Prototype</span>
+          <span className="hidden md:inline-block text-content-muted">| Live Telemetry & AI Paper Ingestion Engine</span>
         </div>
         <div className="flex items-center space-x-3">
-          <span className="hidden sm:inline-block text-polar-400">Auth Testing Switcher:</span>
-          <div className="flex items-center bg-navy-900/90 rounded-full p-0.5 border border-polar-500/30">
+          <span className="hidden sm:inline-block text-content-muted font-medium">Auth Testing Switcher:</span>
+          <div className="flex items-center bg-surface rounded-full p-0.5 border border-stroke">
             <button
               onClick={() => handleSwitchRole('public')}
-              className={`px-2.5 py-0.5 rounded-full font-medium transition-all ${
+              className={`px-2.5 py-0.5 rounded-full font-medium transition-all btn-game ${
                 activeRole === 'public'
-                  ? 'bg-polar-600 text-white shadow'
-                  : 'text-polar-300 hover:text-white'
+                  ? 'bg-brand-primary text-white shadow'
+                  : 'text-content-muted hover:text-content-main'
               }`}
             >
               Public
             </button>
             <button
               onClick={() => handleSwitchRole('researcher')}
-              className={`px-2.5 py-0.5 rounded-full font-medium transition-all ${
+              className={`px-2.5 py-0.5 rounded-full font-medium transition-all btn-game ${
                 activeRole === 'researcher'
-                  ? 'bg-aurora-cyan text-navy-950 font-bold shadow'
-                  : 'text-polar-300 hover:text-white'
+                  ? 'bg-brand-accent text-slate-900 font-bold shadow'
+                  : 'text-content-muted hover:text-content-main'
               }`}
             >
               Researcher
             </button>
             <button
               onClick={() => handleSwitchRole('admin')}
-              className={`px-2.5 py-0.5 rounded-full font-medium transition-all ${
+              className={`px-2.5 py-0.5 rounded-full font-medium transition-all btn-game ${
                 activeRole === 'admin'
-                  ? 'bg-purple-600 text-white font-bold shadow'
-                  : 'text-polar-300 hover:text-white'
+                  ? 'bg-brand-purple text-white font-bold shadow'
+                  : 'text-content-muted hover:text-content-main'
               }`}
             >
               Admin
@@ -92,16 +94,16 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Brand Logo */}
           <Link href="/" className="flex items-center space-x-3 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-aurora-cyan to-polar-600 p-0.5 shadow-glow-cyan group-hover:scale-105 transition-transform">
-              <div className="w-full h-full bg-navy-950 rounded-[10px] flex items-center justify-center">
-                <Globe className="w-5 h-5 text-aurora-cyan animate-pulse" />
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-accent to-brand-primary p-0.5 shadow-glow-cyan group-hover:scale-105 transition-transform">
+              <div className="w-full h-full bg-surface rounded-[10px] flex items-center justify-center">
+                <Globe className="w-5 h-5 text-brand-primary animate-pulse" />
               </div>
             </div>
             <div>
-              <div className="text-xl font-bold text-white tracking-wider flex items-center">
-                POLAR<span className="text-aurora-cyan font-black">QUEST</span>
+              <div className="text-xl font-bold text-content-main tracking-wider flex items-center">
+                POLAR<span className="text-brand-primary font-black">QUEST</span>
               </div>
-              <div className="text-[10px] tracking-widest text-polar-300 uppercase -mt-1 font-mono">
+              <div className="text-[10px] tracking-widest text-content-muted uppercase -mt-1 font-mono">
                 MoES Polar Frontier
               </div>
             </div>
@@ -117,16 +119,16 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`flex items-center space-x-2 px-3.5 py-2 rounded-lg text-sm font-medium transition-all ${
+                  className={`flex items-center space-x-2 px-3.5 py-2 rounded-lg text-sm font-medium transition-all btn-game ${
                     isActive
-                      ? 'bg-polar-500/20 text-aurora-cyan border border-aurora-cyan/30 shadow-glow-cyan'
-                      : 'text-polar-200 hover:text-white hover:bg-polar-900/40'
+                      ? 'bg-bg-secondary text-brand-primary border border-brand-primary/40 font-bold'
+                      : 'text-content-muted hover:text-content-main hover:bg-bg-secondary/60'
                   }`}
                 >
                   <Icon className="w-4 h-4" />
                   <span>{link.name}</span>
                   {link.protectedRole && (
-                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-polar-900 border border-polar-500/30 text-polar-300">
+                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-bg-secondary border border-stroke text-content-muted font-mono uppercase">
                       {link.protectedRole}
                     </span>
                   )}
@@ -135,19 +137,32 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* User Auth Action */}
+          {/* User Auth Action & Theme Toggle */}
           <div className="flex items-center space-x-3">
+            {/* Sun / Moon Theme Switcher */}
+            <button
+              onClick={toggleTheme}
+              title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
+              className="p-2.5 rounded-xl bg-bg-secondary border border-stroke text-brand-primary btn-game shadow-sm"
+            >
+              {theme === 'dark' ? (
+                <Sun className="w-4 h-4 text-semantic-warning animate-spin" style={{ animationDuration: '20s' }} />
+              ) : (
+                <Moon className="w-4 h-4 text-brand-primary" />
+              )}
+            </button>
+
             {userEmail ? (
-              <div className="flex items-center space-x-2 bg-polar-900/60 border border-polar-500/30 px-3 py-1.5 rounded-xl">
-                <UserCheck className="w-4 h-4 text-aurora-cyan" />
+              <div className="flex items-center space-x-2 bg-bg-secondary border border-stroke px-3 py-1.5 rounded-xl">
+                <UserCheck className="w-4 h-4 text-brand-primary" />
                 <div className="text-xs">
-                  <div className="text-white font-medium truncate max-w-[120px]">{userEmail}</div>
-                  <div className="text-polar-400 capitalize text-[10px]">{activeRole} Mode</div>
+                  <div className="text-content-main font-medium truncate max-w-[120px]">{userEmail}</div>
+                  <div className="text-content-muted capitalize text-[10px]">{activeRole} Mode</div>
                 </div>
                 <button
                   onClick={() => handleSwitchRole('public')}
                   title="Logout"
-                  className="text-polar-400 hover:text-red-400 p-1 rounded transition-colors"
+                  className="text-content-muted hover:text-semantic-danger p-1 rounded transition-colors"
                 >
                   <LogOut className="w-3.5 h-3.5" />
                 </button>
@@ -155,7 +170,7 @@ export default function Navbar() {
             ) : (
               <Link
                 href="/login"
-                className="flex items-center space-x-2 bg-gradient-to-r from-polar-600 to-polar-500 hover:from-polar-500 hover:to-aurora-cyan text-white hover:text-navy-950 font-semibold px-4 py-2 rounded-xl text-sm transition-all shadow-glow-ice"
+                className="flex items-center space-x-2 bg-gradient-to-r from-brand-primary to-brand-primary-hover text-white font-semibold px-4 py-2 rounded-xl text-sm btn-game shadow-glow-indigo"
               >
                 <span>Login</span>
               </Link>
@@ -166,3 +181,5 @@ export default function Navbar() {
     </header>
   );
 }
+
+

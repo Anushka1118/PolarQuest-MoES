@@ -3,37 +3,93 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 3, 5, 13;
-  --background-end-rgb: 7, 11, 25;
+  /* Backgrounds */
+  --bg-main: 245 247 255;          /* #F5F7FF Soft blue-white */
+  --bg-secondary: 238 241 255;     /* #EEF1FF Lavender-white */
+  --surface: 255 255 255;          /* #FFFFFF Pure White Cards */
+  --surface-hover: 241 243 255;    /* #F1F3FF Soft lavender hover */
+
+  /* Brand Colors (Indigo + Cyan + Purple visual identity) */
+  --primary: 99 102 241;           /* #6366F1 Electric Indigo */
+  --primary-hover: 79 70 229;      /* #4F46E5 Deeper Indigo */
+  --accent: 6 182 212;             /* #06B6D4 Polar Cyan */
+  --purple: 139 92 246;            /* #8B5CF6 Vibrant Purple */
+
+  /* Semantic Feedback */
+  --success: 16 185 129;           /* #10B981 Emerald */
+  --warning: 245 158 11;           /* #F59E0B Amber */
+  --danger: 244 63 94;             /* #F43F5E Coral Red */
+
+  /* Typography & Borders */
+  --text-main: 23 32 51;           /* #172033 Deep Navy */
+  --text-muted: 100 116 139;       /* #64748B Slate */
+  --border: 226 232 240;           /* #E2E8F0 Soft blue-gray */
+}
+
+.dark {
+  /* Backgrounds */
+  --bg-main: 11 16 32;            /* #0B1020 Deep Void Navy */
+  --bg-secondary: 17 24 43;        /* #11182B Navy-purple panel tint */
+  --surface: 22 29 50;             /* #161D32 Deep Card Surface */
+  --surface-hover: 28 37 64;       /* #1C2540 Interactive Card Hover */
+
+  /* Brand Colors */
+  --primary: 129 140 248;         /* #818CF8 Bright Indigo */
+  --primary-hover: 165 180 252;   /* #A5B4FC Soft Indigo Glow */
+  --accent: 34 211 238;            /* #22D3EE Neon Aurora Cyan */
+  --purple: 167 139 250;           /* #A78BFA Bright Aurora Purple */
+
+  /* Semantic Feedback */
+  --success: 52 211 153;          /* #34D399 Bright Emerald */
+  --warning: 251 191 36;          /* #FBBF24 Warm Amber */
+  --danger: 251 113 133;          /* #FB7185 Bright Rose */
+
+  /* Typography & Borders */
+  --text-main: 248 250 252;       /* #F8FAFC Clean Off-white */
+  --text-muted: 148 163 184;      /* #94A3B8 Polar Slate */
+  --border: 38 50 74;              /* #26324A Dark Void Border */
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      rgb(var(--background-start-rgb)),
-      rgb(var(--background-end-rgb))
-    );
+  color: rgb(var(--text-main));
+  background-color: rgb(var(--bg-main));
   min-height: 100vh;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   overflow-x: hidden;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-/* Custom Ice Scrollbars */
+/* Custom Scrollbars */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #03050d;
+  background: rgb(var(--bg-main));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #0369a1;
+  background: rgb(var(--primary) / 0.5);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #00f2fe;
+  background: rgb(var(--primary));
+}
+
+/* Micro-animations & Interactive Elements */
+.btn-game {
+  transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 150ms cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-game:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px -4px rgba(99, 102, 241, 0.35);
+}
+
+.btn-game:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px -2px rgba(99, 102, 241, 0.2);
 }

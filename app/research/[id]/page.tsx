@@ -33,83 +33,83 @@ export default function ResearchDetailPage() {
   if (!record) return null;
 
   return (
-    <div className="min-h-screen bg-navy-950 py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8">
+    <div className="min-h-screen bg-gradient-to-br from-[#e0f2fe] via-[#dbeafe] to-[#cff4fc] dark:from-navy-950 dark:via-navy-900 dark:to-navy-950 py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8 transition-colors duration-300">
       {/* Back Button */}
       <button
         onClick={() => router.back()}
-        className="flex items-center space-x-2 text-xs font-mono text-polar-300 hover:text-aurora-cyan transition-colors"
+        className="flex items-center space-x-2 text-xs font-mono text-sky-800 dark:text-polar-300 hover:text-sky-600 dark:hover:text-aurora-cyan transition-colors"
       >
         <ArrowLeft className="w-4 h-4" />
         <span>Back to Research Vault</span>
       </button>
 
       {/* Paper Main Header Card */}
-      <div className="bg-navy-900/90 border border-polar-500/30 rounded-2xl p-8 shadow-2xl space-y-6 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-aurora-cyan/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="bg-white/90 dark:bg-navy-900/90 border border-sky-300 dark:border-polar-500/30 rounded-2xl p-8 shadow-xl shadow-sky-900/10 dark:shadow-2xl space-y-6 relative overflow-hidden transition-colors">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-sky-300/20 dark:bg-aurora-cyan/10 rounded-full blur-3xl pointer-events-none"></div>
 
         <div className="flex flex-wrap items-center gap-2">
-          <span className="px-3 py-1 rounded-full bg-polar-900 border border-polar-500/30 text-aurora-cyan text-xs font-bold font-mono flex items-center gap-1.5">
+          <span className="px-3 py-1 rounded-full bg-sky-100 dark:bg-polar-900 border border-sky-300 dark:border-polar-500/30 text-sky-800 dark:text-aurora-cyan text-xs font-bold font-mono flex items-center gap-1.5">
             <MapPin className="w-3.5 h-3.5" />
             {record.station_name} Station
           </span>
-          <span className="px-3 py-1 rounded-full bg-navy-950 border border-polar-500/30 text-polar-300 text-xs font-mono">
+          <span className="px-3 py-1 rounded-full bg-white dark:bg-navy-950 border border-sky-300 dark:border-polar-500/30 text-sky-900 dark:text-polar-300 text-xs font-mono">
             {record.discipline}
           </span>
-          <span className="px-3 py-1 rounded-full bg-navy-950 border border-polar-500/30 text-polar-300 text-xs font-mono flex items-center gap-1">
+          <span className="px-3 py-1 rounded-full bg-white dark:bg-navy-950 border border-sky-300 dark:border-polar-500/30 text-sky-900 dark:text-polar-300 text-xs font-mono flex items-center gap-1">
             <Calendar className="w-3.5 h-3.5" />
             Expedition Year: {record.expedition_year}
           </span>
-          <span className="px-3 py-1 rounded-full bg-emerald-950 border border-emerald-500/30 text-emerald-400 text-xs font-mono flex items-center gap-1">
+          <span className="px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950 border border-emerald-300 dark:border-emerald-500/30 text-emerald-800 dark:text-emerald-400 text-xs font-mono flex items-center gap-1">
             <ShieldCheck className="w-3.5 h-3.5" />
             Peer-Reviewed & Admin Verified
           </span>
         </div>
 
-        <h1 className="text-2xl sm:text-4xl font-black text-white leading-tight">
+        <h1 className="text-2xl sm:text-4xl font-black text-[#031a2e] dark:text-white leading-tight">
           {record.title}
         </h1>
 
-        <div className="text-sm text-polar-300 font-medium border-y border-polar-500/10 py-3 flex flex-wrap items-center justify-between gap-4">
+        <div className="text-sm text-sky-900 dark:text-polar-300 font-medium border-y border-sky-200 dark:border-polar-500/10 py-3 flex flex-wrap items-center justify-between gap-4">
           <div>
-            <span className="text-polar-400">Lead Investigator:</span>{' '}
-            <span className="text-white font-bold">{record.author}</span>
+            <span className="text-sky-700 dark:text-polar-400">Lead Investigator:</span>{' '}
+            <span className="text-[#031a2e] dark:text-white font-bold">{record.author}</span>
           </div>
-          <div className="text-xs font-mono text-aurora-cyan">
+          <div className="text-xs font-mono text-sky-700 dark:text-aurora-cyan">
             Coordinates: {record.latitude}° {record.latitude < 0 ? 'S' : 'N'}, {record.longitude}° {record.longitude < 0 ? 'W' : 'E'}
           </div>
         </div>
 
         {/* Abstract */}
         <div className="space-y-2">
-          <h3 className="text-xs font-bold font-mono text-polar-300 uppercase tracking-wider">
+          <h3 className="text-xs font-bold font-mono text-sky-800 dark:text-polar-300 uppercase tracking-wider">
             Abstract Overview
           </h3>
-          <p className="text-sm text-polar-200 leading-relaxed bg-navy-950 p-5 rounded-xl border border-polar-500/20">
+          <p className="text-sm text-slate-700 dark:text-polar-200 leading-relaxed bg-sky-50/80 dark:bg-navy-950 p-5 rounded-xl border border-sky-200 dark:border-polar-500/20">
             {record.abstract}
           </p>
         </div>
 
         {/* Key Findings */}
         <div className="space-y-3">
-          <h3 className="text-xs font-bold font-mono text-polar-300 uppercase tracking-wider">
+          <h3 className="text-xs font-bold font-mono text-sky-800 dark:text-polar-300 uppercase tracking-wider">
             Key Scientific Findings
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {record.key_findings.map((finding, idx) => (
-              <div key={idx} className="bg-navy-950/80 p-4 rounded-xl border border-polar-500/20 flex items-start space-x-3">
-                <CheckCircle2 className="w-5 h-5 text-aurora-cyan shrink-0 mt-0.5" />
-                <span className="text-xs text-polar-200 leading-relaxed">{finding}</span>
+              <div key={idx} className="bg-sky-50/80 dark:bg-navy-950/80 p-4 rounded-xl border border-sky-200 dark:border-polar-500/20 flex items-start space-x-3">
+                <CheckCircle2 className="w-5 h-5 text-sky-600 dark:text-aurora-cyan shrink-0 mt-0.5" />
+                <span className="text-xs text-slate-700 dark:text-polar-200 leading-relaxed">{finding}</span>
               </div>
             ))}
           </div>
         </div>
 
         {/* Action Toolbar */}
-        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-polar-500/20 pt-6">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-sky-200 dark:border-polar-500/20 pt-6">
           <a
             href={record.file_url || '#'}
             download
-            className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-polar-600 to-aurora-cyan text-navy-950 font-bold text-sm shadow-glow-cyan hover:brightness-110 transition-all flex items-center space-x-2"
+            className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-sky-600 to-cyan-600 dark:from-polar-600 dark:to-aurora-cyan text-white dark:text-navy-950 font-bold text-sm shadow-md dark:shadow-glow-cyan hover:brightness-110 transition-all flex items-center space-x-2"
           >
             <Download className="w-4 h-4" />
             <span>Download Scientific PDF Report</span>
