@@ -40,6 +40,7 @@ export default function Navbar() {
     { name: '3D Explorer', href: '/', icon: Globe },
     { name: 'Research Vault', href: '/research', icon: BookOpen },
     { name: 'Smart Education', href: '/learn', icon: GraduationCap },
+    { name: 'Quiz', href: '/quiz', icon: Sparkles },
     { name: 'Researcher Console', href: '/researcher', icon: FileText, protectedRole: 'researcher' },
     { name: 'Admin Console', href: '/admin', icon: ShieldCheck, protectedRole: 'admin' },
   ];

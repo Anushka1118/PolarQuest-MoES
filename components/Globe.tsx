@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { Station, POLAR_STATIONS } from '@/lib/stations';
+import { Plus, Minus, Compass, RotateCcw } from 'lucide-react';
 
 // Dynamically import Globe to avoid SSR window/document execution issues
 const GlobeGl = dynamic(() => import('react-globe.gl'), {
@@ -33,40 +34,70 @@ export default function GlobeComponent({ onSelectStation, selectedStation }: Glo
     if (globeRef.current) {
       const controls = globeRef.current.controls();
       if (controls) {
+        controls.enableZoom = true;
+        controls.zoomSpeed = 0.8;
+        controls.enableRotate = true;
+        controls.rotateSpeed = 0.6;
+        controls.enablePan = false; // Prevents dragging globe off center
         controls.enableDamping = true;
         controls.dampingFactor = 0.08;
-        controls.rotateSpeed = 0.7;
-        controls.zoomSpeed = 1.2;
       }
     }
   }, [mounted]);
 
-  // Smooth camera zoom transition when station selected
+  // Camera transition when station selected
   useEffect(() => {
     if (globeRef.current) {
+      const controls = globeRef.current.controls();
       if (selectedStation) {
-        // Pause auto rotate when focusing a station
-        if (globeRef.current.controls()) {
-          globeRef.current.controls().autoRotate = false;
+        if (controls) {
+          controls.autoRotate = false;
         }
         globeRef.current.pointOfView(
           {
             lat: selectedStation.latitude,
             lng: selectedStation.longitude,
-            altitude: 1.05, // Dramatic close-up zoom into target station
+            altitude: 1.1,
           },
-          2000 // 2 second smooth transition
+          1500
         );
       } else {
-        // Resume auto rotate in global view
-        if (globeRef.current.controls()) {
-          globeRef.current.controls().autoRotate = true;
-          globeRef.current.controls().autoRotateSpeed = 0.6;
+        if (controls) {
+          controls.autoRotate = true;
+          controls.autoRotateSpeed = 0.5;
         }
-        globeRef.current.pointOfView({ lat: 15, lng: 50, altitude: 2.2 }, 1800);
+        globeRef.current.pointOfView({ lat: 15, lng: 50, altitude: 2.2 }, 1500);
       }
     }
   }, [selectedStation, mounted]);
+
+  // Zoom Control Handlers
+  const handleZoomIn = () => {
+    if (globeRef.current) {
+      const pov = globeRef.current.pointOfView();
+      globeRef.current.pointOfView(
+        { ...pov, altitude: Math.max(0.4, pov.altitude * 0.75) },
+        400
+      );
+    }
+  };
+
+  const handleZoomOut = () => {
+    if (globeRef.current) {
+      const pov = globeRef.current.pointOfView();
+      globeRef.current.pointOfView(
+        { ...pov, altitude: Math.min(4.0, pov.altitude * 1.35) },
+        400
+      );
+    }
+  };
+
+  const handleResetView = () => {
+    if (globeRef.current) {
+      onSelectStation(null);
+      globeRef.current.pointOfView({ lat: 15, lng: 50, altitude: 2.2 }, 1000);
+    }
+  };
 
   if (!mounted) return null;
 
@@ -92,7 +123,33 @@ export default function GlobeComponent({ onSelectStation, selectedStation }: Glo
     <div className="relative w-full h-[650px] lg:h-[750px] bg-navy-950 overflow-hidden flex items-center justify-center">
       {/* Ambient Aurora Glow Backdrop */}
       <div className="absolute inset-0 bg-aurora-glow pointer-events-none z-10"></div>
-      
+
+      {/* Floating 3D Globe Zoom & Reset Controls */}
+      <div className="absolute top-6 right-6 z-30 flex flex-col gap-2 bg-navy-900/90 border border-polar-500/30 p-1.5 rounded-2xl backdrop-blur-md shadow-2xl">
+        <button
+          onClick={handleZoomIn}
+          title="Zoom In"
+          className="w-9 h-9 rounded-xl bg-navy-800 hover:bg-polar-600 text-white font-bold flex items-center justify-center transition-all shadow-sm active:scale-95"
+        >
+          <Plus className="w-5 h-5" />
+        </button>
+        <button
+          onClick={handleZoomOut}
+          title="Zoom Out"
+          className="w-9 h-9 rounded-xl bg-navy-800 hover:bg-polar-600 text-white font-bold flex items-center justify-center transition-all shadow-sm active:scale-95"
+        >
+          <Minus className="w-5 h-5" />
+        </button>
+        <div className="w-full h-px bg-polar-500/20 my-0.5" />
+        <button
+          onClick={handleResetView}
+          title="Reset View"
+          className="w-9 h-9 rounded-xl bg-navy-800 hover:bg-aurora-cyan text-white hover:text-navy-950 font-bold flex items-center justify-center transition-all shadow-sm active:scale-95"
+        >
+          <RotateCcw className="w-4 h-4" />
+        </button>
+      </div>
+
       <GlobeGl
         ref={globeRef}
         globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
