@@ -65,10 +65,10 @@ const config: Config = {
       },
       backgroundImage: {
         'polar-grid': "radial-gradient(circle at center, rgba(2, 132, 199, 0.08) 1px, transparent 1px)",
-        'glacier-daylight': "linear-gradient(135deg, #DBEAFE 0%, #BAE6FD 50%, #38BDF8 100%)",
-        'seaguard-deep': "linear-gradient(180deg, #09335E 0%, #051E3A 50%, #020F20 100%)",
+        'glacier-daylight': "linear-gradient(135deg, #2FA0C6 0%, #3FBBE5 50%, #58C9F3 100%)",
+        'seaguard-deep': "linear-gradient(180deg, #1C4E75 0%, #0D3252 50%, #061826 100%)",
         'glass-gradient': "linear-gradient(135deg, rgba(255, 255, 255, 0.60) 0%, rgba(255, 255, 255, 0.20) 100%)",
-        'aurora-glow': "radial-gradient(ellipse at top, rgba(56, 189, 248, 0.25), transparent)",
+        'aurora-glow': "radial-gradient(ellipse at top, rgba(88, 201, 243, 0.25), transparent)",
       },
       boxShadow: {
         'card-glass': '0 20px 45px -10px rgba(12, 74, 110, 0.16), 0 0 25px 0 rgba(255, 255, 255, 0.7), inset 0 2px 4px 0 rgba(255, 255, 255, 1)',
@@ -80,6 +80,8 @@ const config: Config = {
       animation: {
         'pulse-glow': 'pulse-glow 3s infinite ease-in-out',
         'float': 'float 6s ease-in-out infinite',
+        'float-slow': 'float 10s ease-in-out infinite',
+        'shimmer': 'shimmer 2.5s linear infinite',
       },
       keyframes: {
         'pulse-glow': {
@@ -89,7 +91,11 @@ const config: Config = {
         'float': {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-10px)' },
-        }
+        },
+        'shimmer': {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
+        },
       }
     },
   },

@@ -2,138 +2,390 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+/* ╔══════════════════════════════════════════════════════════╗
+   ║  POLARQUEST — AQUA NEBULA DESIGN SYSTEM                  ║
+   ║  Palette:                                                 ║
+   ║    Midnight Abyss  #061826  darkest anchor               ║
+   ║    Atlantic Steel  #1C4E75  mid surface                  ║
+   ║    Tidepool Teal   #2FA0C6  primary interactive          ║
+   ║    Summer Surf     #58C9F3  highlight / accent           ║
+   ║    Glacier Mist    #BDE5FF  pale light / frosted         ║
+   ╚══════════════════════════════════════════════════════════╝ */
+
+/* --- LIGHT MODE defaults (root) --- */
 :root {
-  /* POLARQUEST DAYLIGHT GLACIER DESIGN SYSTEM TOKENS (LIGHT MODE) */
-  --bg-main: 219 234 254;           /* #DBEAFE Daylight Glacier Base */
-  --bg-secondary: 186 230 253;      /* #BAE6FD Glacier Ice Tint */
-  --surface: 255 255 255;           /* rgba(255,255,255,0.55) Frosted Crystal Glass */
-  --surface-hover: 240 249 255;     /* Elevated Glass Hover */
-
-  /* Brand Palette */
-  --primary: 2 132 199;             /* #0284C7 Vivid Ocean Sapphire Blue */
-  --primary-hover: 3 105 161;       /* #0369A1 Marine Deep Cyan */
-  --accent: 56 189 248;             /* #38BDF8 Bioluminescent Ice Cyan */
-  --purple: 147 51 234;             /* Vibrant Glacier Purple */
-
-  /* Semantic Feedback */
-  --success: 16 185 129;            /* #10B981 Arctic Emerald Green */
-  --warning: 245 158 11;            /* #F59E0B Solar Amber Glow */
-  --danger: 239 68 68;              /* #EF4444 Sub-Zero Crimson Red */
-
-  /* Typography & Borders */
-  --text-main: 7 43 74;             /* #072B4A Deep Midnight Navy (High Contrast 900 weight) */
-  --text-muted: 15 59 102;          /* #0F3B66 Ocean Slate (600 weight) */
-  --border: 255 255 255;            /* rgba(255, 255, 255, 0.90) Crystal White Border */
+  --bg-main:       189 229 255;   /* Glacier Mist */
+  --bg-secondary:  214 241 255;
+  --surface:       255 255 255;
+  --surface-hover: 240 249 255;
+  --primary:       47  160 198;   /* Tidepool Teal */
+  --primary-hover: 28  78  117;   /* Atlantic Steel */
+  --accent:        88  201 243;   /* Summer Surf */
+  --success:       16  185 129;
+  --warning:       245 158 11;
+  --danger:        239 68  68;
+  --text-main:     6   24  38;    /* Midnight Abyss */
+  --text-muted:    28  78  117;   /* Atlantic Steel */
+  --border:        255 255 255;
 }
 
+/* --- DARK MODE overrides --- */
 .dark {
-  /* SEAGUARD DEEP UNDERSEA DESIGN SYSTEM TOKENS (DARK MODE) */
-  --bg-main: 2 15 32;               /* #020F20 Deep Undersea */
-  --bg-secondary: 9 51 94;          /* #09335E Deep SeaGuard Layer */
-  --surface: 10 36 68;              /* rgba(10, 36, 68, 0.65) SeaGuard Panel */
-  --surface-hover: 18 58 105;       /* rgba(18, 58, 105, 0.75) Elevated Card */
-
-  /* Brand Palette */
-  --primary: 56 189 248;            /* #38BDF8 Bioluminescent Cyan */
-  --primary-hover: 125 211 252;     /* Sky Cyan Glow */
-  --accent: 56 189 248;             /* #38BDF8 Bioluminescent Ice Cyan */
-  --purple: 168 85 247;            /* Deep Sea Aurora Purple */
-
-  /* Semantic Feedback */
-  --success: 52 211 153;           /* #34D399 Bright Emerald */
-  --warning: 251 191 36;           /* #FBBF24 Warm Amber */
-  --danger: 239 68 68;             /* #EF4444 Cinematic Crimson */
-
-  /* Typography & Borders */
-  --text-main: 248 250 252;        /* High Contrast White */
-  --text-muted: 125 211 252;       /* Ocean Cyan Slate */
-  --border: 125 211 252;           /* rgba(125, 211, 252, 0.30) SeaGuard Border */
+  --bg-main:       6   24  38;    /* Midnight Abyss */
+  --bg-secondary:  10  30  56;
+  --surface:       12  36  64;
+  --surface-hover: 16  46  82;
+  --primary:       88  201 243;   /* Summer Surf */
+  --primary-hover: 189 229 255;   /* Glacier Mist */
+  --accent:        47  160 198;   /* Tidepool Teal */
+  --success:       52  211 153;
+  --warning:       251 191 36;
+  --danger:        239 68  68;
+  --text-main:     189 229 255;   /* Glacier Mist */
+  --text-muted:    88  201 243;   /* Summer Surf */
+  --border:        28  78  117;   /* Atlantic Steel */
 }
 
+/* ─────────────────────────────────────────────────────────── */
+/*  BODY BACKGROUND                                            */
+/* ─────────────────────────────────────────────────────────── */
 body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 400;
   color: rgb(var(--text-main));
-  background: linear-gradient(135deg, #dbeafe 0%, #e0f2fe 35%, #bae6fd 70%, #38bdf8 100%);
-  background-attachment: fixed;
   min-height: 100vh;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-weight: 600;
   overflow-x: hidden;
-  transition: background 0.3s ease, color 0.3s ease;
-}
+  transition: color 0.3s ease;
+  isolation: isolate;
 
-.dark body {
-  background: linear-gradient(180deg, #09335e 0%, #051e3a 50%, #020f20 100%);
+  /* LIGHT MODE — rich polar ice-field with tonal depth */
+  background:
+    /* Specular sun bloom top-center */
+    radial-gradient(ellipse 70% 40% at 50% -8%,   rgba(255,255,255,0.85) 0%, transparent 60%),
+    /* Atlantic Steel depth — lower right */
+    radial-gradient(ellipse 60% 55% at 105% 95%,  rgba(28,78,117,0.35)   0%, transparent 58%),
+    /* Glacier Mist scatter — left edge */
+    radial-gradient(ellipse 50% 70% at -8% 40%,   rgba(189,229,255,0.55) 0%, transparent 60%),
+    /* Base: e8f7ff sky → Glacier Mist → Summer Surf → Tidepool Teal → Atlantic Steel */
+    linear-gradient(160deg,
+      #daf3ff 0%,
+      #BDE5FF 18%,
+      #7dcef2 36%,
+      #46bde6 52%,
+      #2FA0C6 68%,
+      #1e7aaa 82%,
+      #1C4E75 100%
+    );
   background-attachment: fixed;
 }
 
-/* Custom Scrollbars */
-::-webkit-scrollbar {
-  width: 8px;
+/* DARK MODE — deep Antarctic night */
+.dark body {
+  background:
+    radial-gradient(ellipse 70%  45% at 15%  5%,  rgba(47,160,198,0.08)  0%, transparent 60%),
+    radial-gradient(ellipse 55%  40% at 88%  90%, rgba(88,201,243,0.06)  0%, transparent 55%),
+    radial-gradient(ellipse 90%  60% at 50%  50%, rgba(6,24,38,0.40)     0%, transparent 70%),
+    linear-gradient(165deg,
+      #020b12 0%,
+      #061826 22%,
+      #081e30 42%,
+      #0a2844 60%,
+      #0d3258 78%,
+      #1C4E75 100%
+    );
+  background-attachment: fixed;
 }
 
-::-webkit-scrollbar-track {
-  background: rgba(219, 234, 254, 0.5);
-}
-
-.dark ::-webkit-scrollbar-track {
-  background: rgba(2, 15, 32, 0.8);
-}
-
+/* ─────────────────────────────────────────────────────────── */
+/*  SCROLLBAR                                                  */
+/* ─────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: rgba(2, 132, 199, 0.6);
-  border-radius: 9999px;
+  background: rgba(88,201,243,0.40);
+  border-radius: 99px;
 }
+::-webkit-scrollbar-thumb:hover { background: rgba(88,201,243,0.70); }
 
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(2, 132, 199, 0.9);
-}
-
-/* Tactile Response Buttons & Glass Cards */
-.btn-game {
-  transition: transform 0.12s cubic-bezier(0.4, 0, 0.2, 1),
-              background-color 0.15s ease,
-              box-shadow 0.15s ease,
-              border-color 0.15s ease;
-}
-
-.btn-game:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px -5px rgba(2, 132, 199, 0.25);
-}
-
-.btn-game:active {
-  transform: scale(0.96);
-}
-
-/* Glassmorphic Panel Styles */
+/* ─────────────────────────────────────────────────────────── */
+/*  GLASS SURFACE — clean, restrained                         */
+/* ─────────────────────────────────────────────────────────── */
 .glass-panel {
-  background-color: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1.5px solid rgba(255, 255, 255, 0.90);
-  box-shadow: 0 20px 45px -10px rgba(12, 74, 110, 0.16), 0 0 25px 0 rgba(255, 255, 255, 0.7), inset 0 2px 4px 0 rgba(255, 255, 255, 1);
+  /* LIGHT — Glacier Mist frosted slab */
+  background: linear-gradient(145deg,
+    rgba(220,243,255,0.82) 0%,
+    rgba(189,229,255,0.65) 55%,
+    rgba(88,201,243,0.22) 100%
+  );
+  backdrop-filter: blur(20px) saturate(1.6) brightness(1.02);
+  -webkit-backdrop-filter: blur(20px) saturate(1.6) brightness(1.02);
+  border: 1px solid rgba(255,255,255,0.78);
+  border-top-color: rgba(255,255,255,0.95);
+  box-shadow:
+    inset 0 1.5px 0 rgba(255,255,255,0.95),
+    inset 0 -1px 0 rgba(47,160,198,0.18),
+    0 1px 3px rgba(6,24,38,0.06),
+    0 12px 40px -8px rgba(28,78,117,0.18);
+  transition: box-shadow 0.22s ease, border-color 0.22s ease, transform 0.22s cubic-bezier(0.4,0,0.2,1);
 }
-
 .dark .glass-panel {
-  background-color: rgba(10, 36, 68, 0.65);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1.5px solid rgba(125, 211, 252, 0.30);
-  box-shadow: 0 30px 70px -15px rgba(0, 10, 30, 0.7), 0 0 30px 0 rgba(56, 189, 248, 0.15), inset 0 1px 2px 0 rgba(255, 255, 255, 0.25);
+  background: rgba(10,28,52,0.80);
+  backdrop-filter: blur(20px) saturate(1.3);
+  -webkit-backdrop-filter: blur(20px) saturate(1.3);
+  border: 1px solid rgba(88,201,243,0.12);
+  box-shadow:
+    inset 0 1px 0 rgba(88,201,243,0.18),
+    inset 0 -1px 0 rgba(0,0,0,0.40),
+    0 1px 3px rgba(0,0,0,0.30),
+    0 12px 40px -8px rgba(0,5,15,0.60);
 }
 
 .glass-card-elevated {
-  background-color: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1.5px solid rgba(255, 255, 255, 0.95);
-  box-shadow: 0 15px 35px -5px rgba(12, 74, 110, 0.18), inset 0 2px 4px 0 rgba(255, 255, 255, 1);
+  /* LIGHT — brighter Glacier Mist ice tile */
+  background: linear-gradient(140deg,
+    rgba(240,251,255,0.92) 0%,
+    rgba(200,238,255,0.80) 55%,
+    rgba(88,201,243,0.18) 100%
+  );
+  backdrop-filter: blur(24px) saturate(1.7) brightness(1.02);
+  -webkit-backdrop-filter: blur(24px) saturate(1.7) brightness(1.02);
+  border: 1px solid rgba(255,255,255,0.88);
+  border-top-color: rgba(255,255,255,1);
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,1),
+    inset 0 -1px 0 rgba(47,160,198,0.20),
+    0 2px 8px rgba(6,24,38,0.06),
+    0 16px 48px -12px rgba(28,78,117,0.18);
+  border-radius: 1.25rem;
+  transition: box-shadow 0.25s ease, transform 0.25s cubic-bezier(0.34,1.4,0.64,1);
+}
+.glass-card-elevated:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,1),
+    inset 0 -1px 0 rgba(47,160,198,0.30),
+    0 2px 8px rgba(6,24,38,0.08),
+    0 24px 64px -12px rgba(28,78,117,0.22);
+}
+.dark .glass-card-elevated {
+  background: rgba(12,34,60,0.88);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  border: 1px solid rgba(88,201,243,0.14);
+  box-shadow:
+    inset 0 1.5px 0 rgba(88,201,243,0.22),
+    inset 0 -1px 0 rgba(0,0,0,0.50),
+    0 2px 8px rgba(0,0,0,0.25),
+    0 16px 48px -12px rgba(0,5,15,0.60);
+}
+.dark .glass-card-elevated:hover {
+  transform: translateY(-3px);
+  border-color: rgba(88,201,243,0.28);
+  box-shadow:
+    inset 0 1.5px 0 rgba(88,201,243,0.35),
+    inset 0 -1px 0 rgba(0,0,0,0.50),
+    0 2px 8px rgba(0,0,0,0.30),
+    0 24px 64px -12px rgba(0,5,15,0.70),
+    0 0 32px -8px rgba(88,201,243,0.08);
 }
 
-.dark .glass-card-elevated {
-  background-color: rgba(18, 58, 105, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1.5px solid rgba(125, 211, 252, 0.40);
-  box-shadow: 0 20px 45px -10px rgba(0, 10, 30, 0.8), inset 0 1px 2px 0 rgba(255, 255, 255, 0.3);
+/* ─────────────────────────────────────────────────────────── */
+/*  NAVBAR                                                     */
+/* ─────────────────────────────────────────────────────────── */
+header.sticky {
+  /* LIGHT — frosted Glacier Mist ledge */
+  background: linear-gradient(180deg,
+    rgba(225,246,255,0.92) 0%,
+    rgba(189,229,255,0.80) 100%
+  ) !important;
+  backdrop-filter: blur(32px) saturate(1.7) brightness(1.02) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(1.7) brightness(1.02) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.80) !important;
+  box-shadow:
+    inset 0 -1px 0 rgba(47,160,198,0.20),
+    0 2px 24px rgba(28,78,117,0.12) !important;
+}
+.dark header.sticky {
+  background: rgba(4,12,22,0.90) !important;
+  backdrop-filter: blur(32px) !important;
+  -webkit-backdrop-filter: blur(32px) !important;
+  border-bottom: 1px solid rgba(88,201,243,0.10) !important;
+  box-shadow:
+    inset 0 -1px 0 rgba(88,201,243,0.15),
+    0 4px 32px rgba(0,0,0,0.50) !important;
+}
+
+/* ─────────────────────────────────────────────────────────── */
+/*  BUTTONS                                                    */
+/* ─────────────────────────────────────────────────────────── */
+.btn-game {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.15s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.15s ease, opacity 0.15s ease;
+}
+.btn-game:hover  { transform: translateY(-2px); }
+.btn-game:active { transform: scale(0.97); transition-duration: 0.08s; }
+
+/* Sheen sweep on hover */
+.btn-game::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.20), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.45s ease;
+  pointer-events: none;
+}
+.btn-game:hover::after { left: 180%; }
+
+/* ─────────────────────────────────────────────────────────── */
+/*  TYPOGRAPHY                                                 */
+/* ─────────────────────────────────────────────────────────── */
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+/* Polar gradient text */
+.text-polar {
+  background: linear-gradient(130deg, #58C9F3 0%, #BDE5FF 50%, #2FA0C6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+:root:not(.dark) .text-polar,
+.light .text-polar {
+  background: linear-gradient(130deg, #061826 0%, #1C4E75 50%, #2FA0C6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ─────────────────────────────────────────────────────────── */
+/*  LIVE BADGE                                                 */
+/* ─────────────────────────────────────────────────────────── */
+.polar-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 1rem;
+  border-radius: 99px;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: #58C9F3;
+  background: rgba(88,201,243,0.08);
+  border: 1px solid rgba(88,201,243,0.22);
+  box-shadow: inset 0 1px 0 rgba(88,201,243,0.15);
+  backdrop-filter: blur(8px);
+}
+/* Light mode badge — uses ice-tinted glass not plain white */
+:root:not(.dark) .polar-badge,
+.light .polar-badge {
+  color: #1C4E75;
+  background: linear-gradient(135deg, rgba(255,255,255,0.75) 0%, rgba(189,229,255,0.55) 100%);
+  border: 1px solid rgba(255,255,255,0.88);
+  border-top-color: rgba(255,255,255,1);
+  box-shadow: inset 0 1.5px 0 rgba(255,255,255,1), 0 2px 10px rgba(28,78,117,0.12);
+}
+
+/* ─────────────────────────────────────────────────────────── */
+/*  PING ANIMATION                                             */
+/* ─────────────────────────────────────────────────────────── */
+@keyframes polar-ping {
+  0%   { transform: scale(1);   opacity: 0.8; }
+  70%  { transform: scale(2.4); opacity: 0;   }
+  100% { transform: scale(1);   opacity: 0;   }
+}
+.polar-ping { animation: polar-ping 2.2s cubic-bezier(0,0,0.2,1) infinite; }
+
+/* Gradient shift */
+@keyframes grad-shift {
+  0%,100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+/* ─────────────────────────────────────────────────────────── */
+/*  RESEARCH & FEATURE CARDS                                   */
+/* ─────────────────────────────────────────────────────────── */
+.pq-card {
+  border-radius: 1.25rem;
+  transition: transform 0.25s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.25s ease, border-color 0.25s ease;
+  /* LIGHT — Glacier Mist-tinted glass card */
+  background: linear-gradient(145deg,
+    rgba(235,249,255,0.88) 0%,
+    rgba(189,229,255,0.70) 55%,
+    rgba(88,201,243,0.16) 100%
+  );
+  border: 1px solid rgba(255,255,255,0.82);
+  border-top-color: rgba(255,255,255,0.98);
+  box-shadow:
+    inset 0 1.5px 0 rgba(255,255,255,1),
+    inset 0 -1px 0 rgba(47,160,198,0.14),
+    0 2px 8px rgba(6,24,38,0.06),
+    0 16px 40px -10px rgba(28,78,117,0.15);
+}
+.pq-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,1),
+    inset 0 -1px 0 rgba(47,160,198,0.24),
+    0 4px 16px rgba(6,24,38,0.08),
+    0 24px 56px -10px rgba(28,78,117,0.20);
+}
+.dark .pq-card {
+  background: rgba(10,30,58,0.85);
+  border: 1px solid rgba(88,201,243,0.10);
+  box-shadow:
+    inset 0 1px 0 rgba(88,201,243,0.16),
+    0 2px 8px rgba(0,0,0,0.20),
+    0 16px 40px -10px rgba(0,5,15,0.55);
+}
+.dark .pq-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(88,201,243,0.25);
+  box-shadow:
+    inset 0 1px 0 rgba(88,201,243,0.28),
+    0 4px 16px rgba(0,0,0,0.30),
+    0 24px 56px -10px rgba(0,5,15,0.70),
+    0 0 40px -12px rgba(88,201,243,0.10);
+}
+
+/* Feature icon box */
+.pq-icon-box {
+  background: rgba(88,201,243,0.10);
+  border: 1px solid rgba(88,201,243,0.20);
+  box-shadow: inset 0 1px 0 rgba(88,201,243,0.18);
+}
+/* Light mode icon box — ice teal tint */
+:root:not(.dark) .pq-icon-box,
+.light .pq-icon-box {
+  background: linear-gradient(135deg, rgba(189,229,255,0.60) 0%, rgba(47,160,198,0.14) 100%);
+  border: 1px solid rgba(255,255,255,0.80);
+  border-top-color: rgba(255,255,255,0.95);
+  box-shadow: inset 0 1.5px 0 rgba(255,255,255,0.90), 0 2px 6px rgba(28,78,117,0.10);
+}
+
+/* ─────────────────────────────────────────────────────────── */
+/*  TIDAL DIVIDER                                              */
+/* ─────────────────────────────────────────────────────────── */
+.tidal-divider {
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%, rgba(88,201,243,0.25) 30%,
+    rgba(88,201,243,0.50) 50%,
+    rgba(88,201,243,0.25) 70%, transparent 100%
+  );
+}
+
+/* ─────────────────────────────────────────────────────────── */
+/*  FOCUS SELECTION RING (selected station)                    */
+/* ─────────────────────────────────────────────────────────── */
+.station-selected .glass-panel,
+.station-selected .glass-card-elevated {
+  border-color: rgba(88,201,243,0.55) !important;
 }

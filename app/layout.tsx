@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/context/ThemeContext";
+import IceEnvironment from "@/components/IceEnvironment";
 
 export const metadata: Metadata = {
   title: "PolarQuest | MoES Polar Research & Smart Education Platform",
@@ -15,11 +16,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <body className="bg-bg-main text-content-main min-h-screen flex flex-col antialiased transition-colors duration-250">
         <ThemeProvider>
+          <IceEnvironment />
           <Navbar />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1 relative z-10">{children}</main>
           <footer className="bg-surface border-t border-stroke py-8 px-4 sm:px-6 lg:px-8 text-center text-xs text-content-muted transition-colors">
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
               <div className="flex items-center space-x-2">

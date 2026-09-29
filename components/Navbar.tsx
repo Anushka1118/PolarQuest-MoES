@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Globe, Compass, BookOpen, GraduationCap, FileText, ShieldCheck, UserCheck, LogOut, Sparkles, Snowflake, Sun, Moon } from 'lucide-react';
+import { Globe, Compass, BookOpen, GraduationCap, FileText, ShieldCheck, UserCheck, LogOut, Sparkles, Snowflake, Sun, Moon, Menu, X } from 'lucide-react';
 import { UserRole } from '@/lib/supabase';
 import { useTheme } from '@/context/ThemeContext';
 
@@ -12,6 +12,7 @@ export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
   const [activeRole, setActiveRole] = useState<UserRole>('public');
   const [userEmail, setUserEmail] = useState<string | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     // Read session role from localStorage for demo persistence
@@ -54,7 +55,7 @@ export default function Navbar() {
           <span className="hidden md:inline-block text-content-muted">| Live Telemetry & AI Paper Ingestion Engine</span>
         </div>
         <div className="flex items-center space-x-3">
-          <span className="hidden sm:inline-block text-content-muted font-medium">Auth Testing Switcher:</span>
+          <span className="hidden sm:inline-block text-content-muted font-medium">Auth Switcher:</span>
           <div className="flex items-center bg-surface rounded-full p-0.5 border border-stroke">
             <button
               onClick={() => handleSwitchRole('public')}
@@ -109,7 +110,7 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* Navigation Links */}
+          {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center space-x-1">
             {navLinks.map((link) => {
               const Icon = link.icon;
@@ -132,9 +133,9 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* User Auth Action & Theme Toggle */}
+          {/* User Auth Action, Theme Toggle & Mobile Menu Switcher */}
           <div className="flex items-center space-x-3">
-            {/* Sun / Moon Theme Switcher */}
+            {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
               title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
@@ -148,7 +149,7 @@ export default function Navbar() {
             </button>
 
             {userEmail ? (
-              <div className="flex items-center space-x-2 bg-bg-secondary border border-stroke px-3 py-1.5 rounded-xl">
+              <div className="hidden sm:flex items-center space-x-2 bg-bg-secondary border border-stroke px-3 py-1.5 rounded-xl">
                 <UserCheck className="w-4 h-4 text-brand-primary" />
                 <div className="text-xs">
                   <div className="text-content-main font-medium truncate max-w-[120px]">{userEmail}</div>
@@ -170,8 +171,42 @@ export default function Navbar() {
                 <span>Login</span>
               </Link>
             )}
+
+            {/* Mobile Hamburger Toggle */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden p-2 rounded-xl bg-bg-secondary border border-stroke text-content-main btn-game"
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Navigation Drawer */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden py-3 border-t border-stroke space-y-1">
+            {navLinks.map((link) => {
+              const Icon = link.icon;
+              const isActive = pathname === link.href;
+
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`flex items-center space-x-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                    isActive
+                      ? 'bg-bg-secondary text-brand-primary font-bold'
+                      : 'text-content-muted hover:text-content-main hover:bg-bg-secondary/50'
+                  }`}
+                >
+                  <Icon className="w-4 h-4" />
+                  <span>{link.name}</span>
+                </Link>
+              );
+            })}
+          </div>
+        )}
       </div>
     </header>
   );
