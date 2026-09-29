@@ -40,9 +40,8 @@ export default function Navbar() {
     { name: '3D Explorer', href: '/', icon: Globe },
     { name: 'Research Vault', href: '/research', icon: BookOpen },
     { name: 'Smart Education', href: '/learn', icon: GraduationCap },
-    { name: 'Quiz', href: '/quiz', icon: Sparkles },
-    { name: 'Researcher Console', href: '/researcher', icon: FileText, protectedRole: 'researcher' },
-    { name: 'Admin Console', href: '/admin', icon: ShieldCheck, protectedRole: 'admin' },
+    { name: 'Researcher Console', href: '/researcher', icon: FileText },
+    { name: 'Admin Console', href: '/admin', icon: ShieldCheck },
   ];
 
   return (
@@ -128,11 +127,6 @@ export default function Navbar() {
                 >
                   <Icon className="w-4 h-4" />
                   <span>{link.name}</span>
-                  {link.protectedRole && (
-                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-bg-secondary border border-stroke text-content-muted font-mono uppercase">
-                      {link.protectedRole}
-                    </span>
-                  )}
                 </Link>
               );
             })}

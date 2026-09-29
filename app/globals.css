@@ -3,60 +3,67 @@
 @tailwind utilities;
 
 :root {
-  /* Backgrounds */
-  --bg-main: 245 247 255;          /* #F5F7FF Soft blue-white */
-  --bg-secondary: 238 241 255;     /* #EEF1FF Lavender-white */
-  --surface: 255 255 255;          /* #FFFFFF Pure White Cards */
-  --surface-hover: 241 243 255;    /* #F1F3FF Soft lavender hover */
+  /* POLARQUEST DAYLIGHT GLACIER DESIGN SYSTEM TOKENS (LIGHT MODE) */
+  --bg-main: 219 234 254;           /* #DBEAFE Daylight Glacier Base */
+  --bg-secondary: 186 230 253;      /* #BAE6FD Glacier Ice Tint */
+  --surface: 255 255 255;           /* rgba(255,255,255,0.55) Frosted Crystal Glass */
+  --surface-hover: 240 249 255;     /* Elevated Glass Hover */
 
-  /* Brand Colors (Indigo + Cyan + Purple visual identity) */
-  --primary: 99 102 241;           /* #6366F1 Electric Indigo */
-  --primary-hover: 79 70 229;      /* #4F46E5 Deeper Indigo */
-  --accent: 6 182 212;             /* #06B6D4 Polar Cyan */
-  --purple: 139 92 246;            /* #8B5CF6 Vibrant Purple */
+  /* Brand Palette */
+  --primary: 2 132 199;             /* #0284C7 Vivid Ocean Sapphire Blue */
+  --primary-hover: 3 105 161;       /* #0369A1 Marine Deep Cyan */
+  --accent: 56 189 248;             /* #38BDF8 Bioluminescent Ice Cyan */
+  --purple: 147 51 234;             /* Vibrant Glacier Purple */
 
   /* Semantic Feedback */
-  --success: 16 185 129;           /* #10B981 Emerald */
-  --warning: 245 158 11;           /* #F59E0B Amber */
-  --danger: 244 63 94;             /* #F43F5E Coral Red */
+  --success: 16 185 129;            /* #10B981 Arctic Emerald Green */
+  --warning: 245 158 11;            /* #F59E0B Solar Amber Glow */
+  --danger: 239 68 68;              /* #EF4444 Sub-Zero Crimson Red */
 
   /* Typography & Borders */
-  --text-main: 23 32 51;           /* #172033 Deep Navy */
-  --text-muted: 100 116 139;       /* #64748B Slate */
-  --border: 226 232 240;           /* #E2E8F0 Soft blue-gray */
+  --text-main: 7 43 74;             /* #072B4A Deep Midnight Navy (High Contrast 900 weight) */
+  --text-muted: 15 59 102;          /* #0F3B66 Ocean Slate (600 weight) */
+  --border: 255 255 255;            /* rgba(255, 255, 255, 0.90) Crystal White Border */
 }
 
 .dark {
-  /* Backgrounds */
-  --bg-main: 11 16 32;            /* #0B1020 Deep Void Navy */
-  --bg-secondary: 17 24 43;        /* #11182B Navy-purple panel tint */
-  --surface: 22 29 50;             /* #161D32 Deep Card Surface */
-  --surface-hover: 28 37 64;       /* #1C2540 Interactive Card Hover */
+  /* SEAGUARD DEEP UNDERSEA DESIGN SYSTEM TOKENS (DARK MODE) */
+  --bg-main: 2 15 32;               /* #020F20 Deep Undersea */
+  --bg-secondary: 9 51 94;          /* #09335E Deep SeaGuard Layer */
+  --surface: 10 36 68;              /* rgba(10, 36, 68, 0.65) SeaGuard Panel */
+  --surface-hover: 18 58 105;       /* rgba(18, 58, 105, 0.75) Elevated Card */
 
-  /* Brand Colors */
-  --primary: 129 140 248;         /* #818CF8 Bright Indigo */
-  --primary-hover: 165 180 252;   /* #A5B4FC Soft Indigo Glow */
-  --accent: 34 211 238;            /* #22D3EE Neon Aurora Cyan */
-  --purple: 167 139 250;           /* #A78BFA Bright Aurora Purple */
+  /* Brand Palette */
+  --primary: 56 189 248;            /* #38BDF8 Bioluminescent Cyan */
+  --primary-hover: 125 211 252;     /* Sky Cyan Glow */
+  --accent: 56 189 248;             /* #38BDF8 Bioluminescent Ice Cyan */
+  --purple: 168 85 247;            /* Deep Sea Aurora Purple */
 
   /* Semantic Feedback */
-  --success: 52 211 153;          /* #34D399 Bright Emerald */
-  --warning: 251 191 36;          /* #FBBF24 Warm Amber */
-  --danger: 251 113 133;          /* #FB7185 Bright Rose */
+  --success: 52 211 153;           /* #34D399 Bright Emerald */
+  --warning: 251 191 36;           /* #FBBF24 Warm Amber */
+  --danger: 239 68 68;             /* #EF4444 Cinematic Crimson */
 
   /* Typography & Borders */
-  --text-main: 248 250 252;       /* #F8FAFC Clean Off-white */
-  --text-muted: 148 163 184;      /* #94A3B8 Polar Slate */
-  --border: 38 50 74;              /* #26324A Dark Void Border */
+  --text-main: 248 250 252;        /* High Contrast White */
+  --text-muted: 125 211 252;       /* Ocean Cyan Slate */
+  --border: 125 211 252;           /* rgba(125, 211, 252, 0.30) SeaGuard Border */
 }
 
 body {
   color: rgb(var(--text-main));
-  background-color: rgb(var(--bg-main));
+  background: linear-gradient(135deg, #dbeafe 0%, #e0f2fe 35%, #bae6fd 70%, #38bdf8 100%);
+  background-attachment: fixed;
   min-height: 100vh;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
   overflow-x: hidden;
-  transition: background-color 0.25s ease, color 0.25s ease;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.dark body {
+  background: linear-gradient(180deg, #09335e 0%, #051e3a 50%, #020f20 100%);
+  background-attachment: fixed;
 }
 
 /* Custom Scrollbars */
@@ -65,31 +72,68 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgb(var(--bg-main));
+  background: rgba(219, 234, 254, 0.5);
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: rgba(2, 15, 32, 0.8);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgb(var(--primary) / 0.5);
-  border-radius: 4px;
+  background: rgba(2, 132, 199, 0.6);
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(var(--primary));
+  background: rgba(2, 132, 199, 0.9);
 }
 
-/* Micro-animations & Interactive Elements */
+/* Tactile Response Buttons & Glass Cards */
 .btn-game {
-  transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1),
-              background-color 150ms cubic-bezier(0.4, 0, 0.2, 1),
-              box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.12s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.15s ease,
+              box-shadow 0.15s ease,
+              border-color 0.15s ease;
 }
 
 .btn-game:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px -4px rgba(99, 102, 241, 0.35);
+  box-shadow: 0 12px 30px -5px rgba(2, 132, 199, 0.25);
 }
 
 .btn-game:active {
-  transform: translateY(0);
-  box-shadow: 0 4px 12px -2px rgba(99, 102, 241, 0.2);
+  transform: scale(0.96);
+}
+
+/* Glassmorphic Panel Styles */
+.glass-panel {
+  background-color: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(255, 255, 255, 0.90);
+  box-shadow: 0 20px 45px -10px rgba(12, 74, 110, 0.16), 0 0 25px 0 rgba(255, 255, 255, 0.7), inset 0 2px 4px 0 rgba(255, 255, 255, 1);
+}
+
+.dark .glass-panel {
+  background-color: rgba(10, 36, 68, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(125, 211, 252, 0.30);
+  box-shadow: 0 30px 70px -15px rgba(0, 10, 30, 0.7), 0 0 30px 0 rgba(56, 189, 248, 0.15), inset 0 1px 2px 0 rgba(255, 255, 255, 0.25);
+}
+
+.glass-card-elevated {
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 15px 35px -5px rgba(12, 74, 110, 0.18), inset 0 2px 4px 0 rgba(255, 255, 255, 1);
+}
+
+.dark .glass-card-elevated {
+  background-color: rgba(18, 58, 105, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(125, 211, 252, 0.40);
+  box-shadow: 0 20px 45px -10px rgba(0, 10, 30, 0.8), inset 0 1px 2px 0 rgba(255, 255, 255, 0.3);
 }

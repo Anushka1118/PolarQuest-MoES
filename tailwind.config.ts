@@ -64,14 +64,18 @@ const config: Config = {
         }
       },
       backgroundImage: {
-        'polar-grid': "radial-gradient(circle at center, rgba(99, 102, 241, 0.08) 1px, transparent 1px)",
-        'glass-gradient': "linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%)",
-        'aurora-glow': "radial-gradient(ellipse at top, rgba(6, 182, 212, 0.15), rgba(11, 16, 32, 0))",
+        'polar-grid': "radial-gradient(circle at center, rgba(2, 132, 199, 0.08) 1px, transparent 1px)",
+        'glacier-daylight': "linear-gradient(135deg, #DBEAFE 0%, #BAE6FD 50%, #38BDF8 100%)",
+        'seaguard-deep': "linear-gradient(180deg, #09335E 0%, #051E3A 50%, #020F20 100%)",
+        'glass-gradient': "linear-gradient(135deg, rgba(255, 255, 255, 0.60) 0%, rgba(255, 255, 255, 0.20) 100%)",
+        'aurora-glow': "radial-gradient(ellipse at top, rgba(56, 189, 248, 0.25), transparent)",
       },
       boxShadow: {
-        'glow-cyan': '0 0 25px -5px rgba(6, 182, 212, 0.4)',
-        'glow-indigo': '0 0 25px -5px rgba(99, 102, 241, 0.4)',
-        'glow-ice': '0 0 35px -5px rgba(99, 102, 241, 0.3)',
+        'card-glass': '0 20px 45px -10px rgba(12, 74, 110, 0.16), 0 0 25px 0 rgba(255, 255, 255, 0.7), inset 0 2px 4px 0 rgba(255, 255, 255, 1)',
+        'seaguard-deep': '0 30px 70px -15px rgba(0, 10, 30, 0.7), 0 0 30px 0 rgba(56, 189, 248, 0.15), inset 0 1px 2px 0 rgba(255, 255, 255, 0.25)',
+        'glow-cyan': '0 0 20px rgba(56, 189, 248, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.8)',
+        'glow-red': '0 0 15px rgba(239, 68, 68, 0.6)',
+        'glow-indigo': '0 0 25px -5px rgba(2, 132, 199, 0.4)',
       },
       animation: {
         'pulse-glow': 'pulse-glow 3s infinite ease-in-out',
